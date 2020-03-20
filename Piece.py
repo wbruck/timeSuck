@@ -5,7 +5,7 @@ class Piece(object):
         self._y = 0
         self.hp = 0
         self.defense = 0
-        self.mark = ''
+        self.mark = '+'
 
     def set_mark(self, mark):
         self.mark = mark
@@ -26,12 +26,25 @@ class Piece(object):
     def get_location_mark(self):
         return (self._x, self._y, self.mark)
 
+    def move(self, x, y):
+        # check board
+        # where are the other peices
+
+        # where is teh edge
+        
+        # check move
+        # Do move
+        pass
+
 if __name__ == "__main__":
     from Board import Board
     tank = Piece()
     tank.set_location(3, 3)
     tank.set_mark("x")
 
-    new = Board(5, 5)
+    new = Board(5, 5, '.')
     new.insert(*tank.get_location_mark())
+
+    new
+
     new.pnt()
