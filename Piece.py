@@ -41,15 +41,38 @@ class Piece(object):
     def current_direction(self):
         return self.current_direction
 
-    def move(self, x, y):
-        # check board
-        # where are the other peices
+    def _get_next_pos(self, board):
 
+        # todo math to derive square from direction
+        # todo edge of board checks
         # where is teh edge
+        if self.direction == 3:
+            x = self._x + 1
+            y = self._y
 
-        # check move
+        print(x, y)
+
+        # check board
+        return (x, y)
+
+    def move(self, board):
+        # get direction
+        # get desired next position
+        next_x, next_y = self._get_next_pos(board)
+
+        # check board
+        can_move = board._check_empty(next_x, next_y)
+
+        # TODO - what is the second best position
+        # where are the other peices
         # Do move
-        pass
+        if can_move:
+            if board.update_piece(self.key, next_x, next_y):
+                self._x = next_x
+                self._y = next_y
+                return True
+        else:
+            return False
 
     def __repr__(self):
         return "{}, {}, {}, {}".format(self.mark, self._x,

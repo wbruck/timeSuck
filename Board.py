@@ -59,14 +59,25 @@ class Board(object):
 
         return new_key
 
-    def update_piece(self, piece_key):
-        pass
+    def update_piece(self, piece_key, new_x, new_y):
+        # get piece info
+        cur_piece = self.pieces[piece_key]
+        old_x, old_y = cur_piece._x, cur_piece._y
+
+        # update piece to new position
+        self._update(new_x, new_y, cur_piece.mark)
+
+        # delete old piece
+        self._erase(old_x, old_y)
+
+        return True
 
     def move_piece(self, piece_key):
         cur_piece = self.pieces[piece_key]
         print(cur_piece)
 
-        # do math to derive square from direction
+        # todo math to derive square from direction
+        # todo edge of board checks
         if cur_piece.direction == 3:
             old_x, old_y = cur_piece.get_location()
             x = old_x + 1
@@ -75,6 +86,7 @@ class Board(object):
         print(x, y)
 
         # check if square is free
+        # todo move this to updade piece
         if self._check_empty(x, y):
             cur_piece.set_location(x, y)
             # clear square

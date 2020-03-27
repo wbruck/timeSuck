@@ -26,12 +26,23 @@ if __name__ == "__main__":
     bishop.set_key(key2)
 
     # print loop
-    print(pawn)
-    print(bishop)
+    # start loop
+    keep_going = True
+    xx = 0
+    while keep_going:
+        print(pawn)
+        print(bishop)
 
-    new_b.draw()
+        pawn.move(new_b)
 
-    move_key = pawn.key
-    new_b.move_piece(move_key)
+        new_b.draw()
 
-    new_b.draw()
+        
+        keep_going = input()
+
+        if keep_going == '':
+            break
+
+        xx += 1
+        if xx > 10:
+            break
